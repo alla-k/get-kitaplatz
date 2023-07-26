@@ -1,0 +1,33 @@
+server:
+  port: 9001
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/place_db
+    username: test
+    password: pasw0rd
+  jpa:
+    properties:
+      hibernate:
+        naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ddl-auto: create
+    show_sql: true
+kafka:
+  consumer:
+    bootstrap-servers: localhost:9092
+    group-id: price_service
+    auto-offset-reset: earliest
+  producer:
+    bootstrap-servers: localhost:9092
+topic.input:
+  reservation-request: reservation.request
+  kita-place: kita.place
+topic.output:
+  reserve-place: reserve.place
+  confirmation-data: confirmation.data
+test-mode:
+  active: true
+  period: 5

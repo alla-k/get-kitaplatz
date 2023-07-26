@@ -1,0 +1,30 @@
+server:
+  port: 9000
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/account_db
+    username: test
+    password: pasw0rd
+  jpa:
+    properties:
+      hibernate:
+        naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ddl-auto: create
+    show_sql: true
+kafka:
+  producer:
+    bootstrap-servers: localhost:9092
+topic.output:
+  reservation-request: reservation.request
+  onboard-user: onboard.user
+  place-claim: place.claim
+  user-mail: user.mail
+topic.input:
+  confirmation-data: confirmation.data
+test-mode:
+  active: true
+  period: 5
