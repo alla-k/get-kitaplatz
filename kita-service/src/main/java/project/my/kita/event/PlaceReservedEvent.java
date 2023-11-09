@@ -17,7 +17,7 @@ public class PlaceReservedEvent extends ApplicationEvent {
     private String startDate;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private String endDate;
-    private String placeId;
+    private int placeId;
 
     public PlaceReservedEvent(PlaceReservedMessage placeReservedMessage){
         super(placeReservedMessage);

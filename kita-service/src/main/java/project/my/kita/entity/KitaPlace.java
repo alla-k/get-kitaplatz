@@ -4,10 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -21,8 +18,9 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @AllArgsConstructor
 public class KitaPlace {
     @Id
-//    @GeneratedValue(strategy = IDENTITY)
-    private String id;
+    @GeneratedValue(strategy = IDENTITY)
+    private int id;
+    @NonNull
     private String kitaId;
     private LocalDate contractStartDate;
     private LocalDate contractEndDate;

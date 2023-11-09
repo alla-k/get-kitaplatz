@@ -10,6 +10,7 @@ import project.my.kita.service.KitaPlaceService;
 
 @Slf4j
 @RestController
+@RequestMapping("/api/v1/kita")
 public class KitaPlacesController {
 
     @Autowired
@@ -17,9 +18,9 @@ public class KitaPlacesController {
 
     @PostMapping("/createPlace")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> createAccount(@RequestBody KitaPlace kitaPlace) {
+    public ResponseEntity<String> createPlace(@RequestBody KitaPlace kitaPlace) {
         try {
-            String kitaPlaceId = kitaPlaceService.createPlace(kitaPlace);
+            int kitaPlaceId = kitaPlaceService.createPlace(kitaPlace);
             return ResponseEntity.ok("Kita place with id " + kitaPlaceId + " was created");
         } catch (Exception e) {
             log.error(e.getMessage());

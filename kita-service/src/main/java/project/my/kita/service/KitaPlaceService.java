@@ -22,7 +22,7 @@ public class KitaPlaceService {
     @Autowired
     private KitaPlaceProducer kitaPlaceProducer;
 
-    public String createPlace(KitaPlace kitaPlace) {
+    public int createPlace(KitaPlace kitaPlace) {
         LocalDate startDate = kitaPlace.getContractStartDate();
         LocalDate endDate = kitaPlace.getContractEndDate();
         checkDates(startDate, endDate);
@@ -30,7 +30,7 @@ public class KitaPlaceService {
 
         KitaPlace saved = kitaPlaceRepository.save(kitaPlace);
         KitaPlaceChangedMessage message = KitaPlaceChangedMessage.builder()
-                .id(saved.getId())
+                //.id(saved.getId())
                 .kitaId(saved.getKitaId())
                 .applicationId(saved.getApplicationId())
                 .contractStartDate(saved.getContractStartDate())

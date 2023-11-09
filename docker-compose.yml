@@ -7,7 +7,7 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_MULTIPLE_DATABASES=account_db,place_db,kita_db
+      - POSTGRES_MULTIPLE_DATABASES=account_db,auth_db,place_db,kita_db
       - POSTGRES_USER=test
       - POSTGRES_PASSWORD=pasw0rd
 

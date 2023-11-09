@@ -38,7 +38,7 @@ public class KitaPlaceServiceTest {
     public void testCreateKitaPlace_Success() {
     //prepare test data
         KitaPlace kitaPlace = KitaPlace.builder()
-                .id("1232")
+                .id(1232)
                 .kitaId("kita123")
                 .status(Status.AVAILABLE)
                 .build();
@@ -47,7 +47,7 @@ public class KitaPlaceServiceTest {
         when(kitaPlaceRepository.save(any(KitaPlace.class)))
                 .thenReturn(kitaPlace);
 
-        String result = kitaPlaceService.createPlace(kitaPlace);
+       int result = kitaPlaceService.createPlace(kitaPlace);
 
         verify(kitaPlaceRepository, times(1)).save(any(KitaPlace.class));
 
@@ -61,7 +61,7 @@ public class KitaPlaceServiceTest {
     @Test
     public void testCreateKItaPlace_wrongStatusAssigned(){
         KitaPlace kitaPlace = KitaPlace.builder()
-                .id("1232")
+                .id(1232)
                 .kitaId("kita123")
                 .status(Status.ASSIGNED)
                 .build();
@@ -79,7 +79,7 @@ public class KitaPlaceServiceTest {
     @Test
     public void testCreateKItaPlace_wrongStatusAvailable(){
         KitaPlace kitaPlace = KitaPlace.builder()
-                .id("1232")
+                .id(1232)
                 .kitaId("kita123")
                 .contractStartDate(LocalDate.parse("2023-10-10"))
                 .contractEndDate(LocalDate.parse("2025-10-10"))

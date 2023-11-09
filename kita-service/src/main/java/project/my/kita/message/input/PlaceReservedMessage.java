@@ -19,6 +19,6 @@ public class PlaceReservedMessage implements BaseMessage {
     private String startDate;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private String endDate;
-    private String placeId;
+    private int placeId;
 
 }

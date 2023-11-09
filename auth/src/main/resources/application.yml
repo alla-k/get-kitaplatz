@@ -1,0 +1,20 @@
+server:
+  port: 9003
+token:
+  signing:
+    key: 413F4428472B4B6250643168566D5970337336763979244226452948404D6351
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/auth_db
+    username: test
+    password: pasw0rd
+  jpa:
+    properties:
+      hibernate:
+        naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ddl-auto: create
+    show_sql: true
