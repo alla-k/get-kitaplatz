@@ -6,31 +6,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.my.account.entity.KitaPlaceApplication;
-import project.my.account.entity.User;
 import project.my.account.service.ReservationService;
-import project.my.account.service.UserService;
 
 import java.util.UUID;
 
 @Slf4j
 @RestController
+@RequestMapping("/api/v1/account")
 public class AccountServiceController {
     @Autowired
     private ReservationService reservationService;
-    @Autowired
-    private UserService userService;
 
-    @PostMapping("/createAccount")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> createAccount(@RequestBody User user) {
-        try {
-            String userId = userService.createUser(user);
-            return ResponseEntity.ok("User with id " + userId + " was created");
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
-    }
     @PostMapping("/sendReservation")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> sendKitaPlaceApplication(@RequestBody KitaPlaceApplication kitaPlaceApplication) {

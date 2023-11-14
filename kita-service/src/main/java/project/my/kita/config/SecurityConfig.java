@@ -3,8 +3,10 @@ package project.my.kita.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -28,9 +30,10 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable);
 
         http.authorizeHttpRequests(rQ ->
-                rQ.requestMatchers("/api/v1/auth/**").permitAll().anyRequest().authenticated());
+                rQ.requestMatchers("/api/v1/kita/**").hasAuthority("KITA")
+                        .anyRequest().authenticated());
         http.sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-      //  http.authenticationManager(authenticationManager());
+
         http.authenticationProvider(authenticationProvider()).addFilterBefore(
                 jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
@@ -42,5 +45,11 @@ public class SecurityConfig {
         authProvider.setUserDetailsService(userService);
         authProvider.setPasswordEncoder(new BCryptPasswordEncoder());
         return authProvider;
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
+            throws Exception {
+        return config.getAuthenticationManager();
     }
 }
