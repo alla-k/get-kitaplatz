@@ -32,7 +32,8 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable);
 
         http.authorizeHttpRequests(rQ ->
-                rQ.anyRequest().authenticated());
+                rQ.requestMatchers("/api/v1/place/**").hasAuthority("USER")
+                        .anyRequest().authenticated());
         http.sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         http.authenticationProvider(authenticationProvider()).addFilterBefore(
